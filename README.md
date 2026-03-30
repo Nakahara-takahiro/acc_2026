@@ -10,11 +10,11 @@
 ### 第2回 「RGB色空間」数値で色を表現する（2026年3月18日）
 - [color_sample.py](./color_sample.py) カラーを手入力で変更して確認するプログラム
 - [mix_color.py](./mix_color.py) 混色実験プログラム 
-### 第2期第3回 「ロータリーエンコーダーの仕組み」回転を数値に変換する（2026年4月）
+### 第3回 「ロータリーエンコーダーの仕組み」回転を数値に変換する（2026年4月）
 - [encoder_sample.py](encoder_sample.py) 一つの青色LEDの明るさが変わる
 - [encoder_led_rgb.py](encoder_led_rgb.py) 対応したSWを押しながら動作すると、RGBのLEDの明るさが変わる
 - [encoder_neopixel.py](encoder_neopixel.py) WS2812Bの色と明るさが変わる
-### 第2期第4回 「LEDコントローラーを作ろう」エンコーダーで色相を操作（2026年4月）
+### 第4回 「LEDコントローラーを作ろう」エンコーダーで色相を操作（2026年4月）
 
 
 ## 第3期ScratchとPythonでクイズゲームを作ろう
