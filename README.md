@@ -15,8 +15,10 @@
 - [対応したSWを押しながら動作すると、RGBのLEDの明るさが変わる](encoder_led_rgb.py) 
 - [WS2812Bの色と明るさが変わる](encoder_neopixel.py) 
 ### 第4回 ~~「LEDコントローラーを作ろう」エンコーダーで色相を操作（2026年4月）~~ 「シューティングゲームを作ろう」ロータリーエンコーダー入力を移動に使う
-- [シューティングゲームの仕様書](shooting_game_spec.md ) 
+- [シューティングゲームの仕様書](shooting_game_spec.md) 
 - [ロータリーエンコーダーを使ったシンプルなシューティングゲームのテンプレート](simple_shooting_template.py) 
+- [ロータリーエンコーダーを使ったシンプルなシューティングゲーム](simple_shooting.py) 
+
 
 ## 第3期ScratchとPythonでクイズゲームを作ろう
 ### 第1回「Scratchのリスト機能」問題と答えをまとめて管理しよう
