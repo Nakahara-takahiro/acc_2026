@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>近未来クイズアプリ</title>
+    <!-- 近未来的なフォントをGoogle Fontsから読み込む -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 近未来・サイバーパンク風デザインのスタイルシート */
+
+        /* 全体の基本設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 背景に星のような装飾（近未来・宇宙感の演出） */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 90px 230px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* クイズカード（ガラスモルフィズム＋ネオン枠線） */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05); /* 半透明の白 */
+            backdrop-filter: blur(12px);          /* 背景をぼかす */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 254, 0.3); /* ネオンブルーの薄い枠線 */
+            border-radius: 16px;
+            padding: 40px;
+            width: 80%;
+            max-width: 650px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                        0 0 15px rgba(0, 242, 254, 0.2); /* 外側に青く光る影 */
+            text-align: center;
+        }
+
+        /* カテゴリ・問題数の表示 */
+        .info-text {
+            font-family: 'Orbitron', sans-serif; /* 近未来フォント */
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #00f2fe; /* ネオンブルー */
+            text-shadow: 0 0 5px rgba(0, 242, 254, 0.5);
+            margin-bottom: 20px;
+        }
+
+        /* 問題文のテキスト */
+        .question-text {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ボタンを横並びにするグループ（Flexbox） */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* 画面幅が狭いときは折り返す */
+        }
+
+        /* 回答ボタン（ネオン発光＋トランジション） */
+        .btn {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #00f2fe;
+            border-radius: 8px;
+            padding: 15px 25px;
+            cursor: pointer;
+            min-width: 150px;
+            flex: 1; /* 幅を均等にする */
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+            outline: none;
+        }
+
+        /* ボタンホバー時のエフェクト（ネオンが強く光る） */
+        .btn:hover {
+            background: #00f2fe;
+            color: #090a0f;
+            box-shadow: 0 0 20px #00f2fe,
+                        0 0 40px rgba(0, 242, 254, 0.5);
+            transform: translateY(-3px); /* 少し上に浮き上がる */
+        }
+
+        /* ボタンクリック時 */
+        .btn:active {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <!-- クイズのヘッダー情報（カテゴリや問題数） -->
+        <div id="info" class="info-text">読み込み中...</div>
+        
+        <!-- 問題文を表示するエリア -->
+        <div id="question" class="question-text">クイズデータを読み込んでいます...</div>
+        
+        <!-- 横並びの3つの回答ボタン -->
+        <div id="button-container" class="btn-group">
+            <button class="btn" onclick="clickButton(0)">選択肢 1</button>
+            <button class="btn" onclick="clickButton(1)">選択肢 2</button>
+            <button class="btn" onclick="clickButton(2)">選択肢 3</button>
+        </div>
+    </div>
+
+    <script>
+        // ★quiz_random.pyの1行目と同じ（randomモジュールに相当する乱数機能をJSで使用）
+        // JSには標準でシャッフルやランダム選択がないため、関数を用意します。
+
+        // ★quiz_random.pyの3〜14行目と同じクイズデータ
+        const quiz = [
+            ["日本の首都は？", "東京", "地理"],
+            ["日本一長い川は？", "信濃川", "地理"],
+            ["日本一高い山は？", "富士山", "地理"],
+            ["光合成をする器官は？", "葉緑体", "理科"],
+            ["水の化学式は？", "H2O", "理科"],
+            ["音の速さは約何m/sか？", "340", "理科"],
+            ["地球の表面積の約何割が海か？", "7", "理科"],
+            ["徳川幕府を開いたのは？", "徳川家康", "歴史"],
+            ["日本で最初の元号は？", "大化", "歴史"],
+            ["大政奉還が行われた年は？", "1867", "歴史"]
+        ];
+
+        // リストをランダムに並び替え（★quiz_random.pyの16行目と同じ役割）
+        let shuffledQuiz = [...quiz];
+        shuffle(shuffledQuiz);
+
+        // スコアを記録する連想配列（★quiz_random.pyの18行目と同じ）
+        const scores = {};
+
+        // 現在の問題番号と、画面の3択の選択肢
+        let currentIndex = 0;
+        let currentChoices = [];
+
+        // 配列をランダムに並び替える関数（シャッフル）
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        // 3択の選択肢を作る関数
+        function makeChoices(correctAnswer) {
+            // すべての問題の「答え」を取り出してリストにする
+            const allAnswers = [];
+            for (let i = 0; i < quiz.length; i++) {
+                allAnswers.push(quiz[i][1]);
+            }
+            
+            // 正解以外の答え（ダミー候補）のリストを作る
+            const dummies = [];
+            for (let i = 0; i < allAnswers.length; i++) {
+                if (allAnswers[i] !== correctAnswer) {
+                    dummies.push(allAnswers[i]);
+                }
+            }
+            
+            // ダミー候補からランダムに2つ選ぶ
+            const selectedDummies = [];
+            while (selectedDummies.length < 2) {
+                const randomIndex = Math.floor(Math.random() * dummies.length);
+                const randomDummy = dummies[randomIndex];
+                // 重複しないように選ぶ
+                if (!selectedDummies.includes(randomDummy)) {
+                    selectedDummies.push(randomDummy);
+                }
+            }
+            
+            // 正解とダミーを合わせたリストを作る
+            const choices = [correctAnswer, selectedDummies[0], selectedDummies[1]];
+            // 選択肢をランダムに並べ替える
+            shuffle(choices);
+            return choices;
+        }
+
+        // 問題を画面に表示する関数
+        function showQuestion() {
+            // 現在の問題データを取得する（★quiz_random.pyの20行目のfor文と同じ変数）
+            const q = shuffledQuiz[currentIndex][0];
+            const a = shuffledQuiz[currentIndex][1];
+            const category = shuffledQuiz[currentIndex][2];
+            
+            // 画面のテキストを書き換える
+            document.getElementById("info").textContent = `【${category}】 第 ${currentIndex + 1} 問 / 全 ${quiz.length} 問`;
+            document.getElementById("question").textContent = q; // qを表示（★quiz_random.pyの21行目のprint(q)に対応）
+            
+            // 3択を生成する
+            currentChoices = makeChoices(a);
+            
+            // 3つのボタンの文字を更新する
+            const buttons = document.querySelectorAll(".btn");
+            buttons[0].textContent = currentChoices[0];
+            buttons[1].textContent = currentChoices[1];
+            buttons[2].textContent = currentChoices[2];
+        }
+
+        // ボタンが押されたときに動く関数
+        function clickButton(btnNum) {
+            // 押されたボタンの回答と、現在の問題の正解・カテゴリを取得
+            const selectedAnswer = currentChoices[btnNum];
+            const q = shuffledQuiz[currentIndex][0];
+            const a = shuffledQuiz[currentIndex][1];
+            const category = shuffledQuiz[currentIndex][2];
+            
+            // 正誤判定（★quiz_random.pyの23〜27行目と同じ判定とスコア記録ロジック）
+            if (selectedAnswer === a) {
+                alert("正解！"); // ★quiz_random.pyの24行目に対応
+                // scores[category] = scores.get(category, 0) + 1 と同じ処理
+                if (scores[category] === undefined) {
+                    scores[category] = 0;
+                }
+                scores[category] = scores[category] + 1; // ★quiz_random.pyの25行目と同じ
+            } else {
+                alert("残念… 正解は " + a); // ★quiz_random.pyの27行目と同じ
+            }
+            
+            // 次の問題へ進む
+            currentIndex++;
+            if (currentIndex < quiz.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        // 結果画面を表示する関数
+        function showResult() {
+            // 選択肢ボタンエリアを画面から非表示にする
+            document.getElementById("button-container").style.display = "none";
+            
+            // 結果のテキストを作る（★quiz_random.pyの29行目に対応）
+            let resultText = "--- カテゴリ別結果 ---\n";
+            let totalCorrect = 0;
+            
+            // カテゴリごとの正解数をループで取り出す（★quiz_random.pyの30〜31行目と同じループ）
+            for (const category in scores) {
+                resultText += category + "：" + scores[category] + "問正解\n"; // ★quiz_random.pyの31行目と同じ
+                totalCorrect += scores[category];
+            }
+            
+            // 画面表示を最終結果に更新する
+            document.getElementById("info").textContent = "クイズ終了！";
+            // 改行コード \n をブラウザ用の <br> に変換して表示
+            const formattedResult = resultText.replace(/\n/g, "<br>");
+            document.getElementById("question").innerHTML = "お疲れ様でした！<br>合計正解数: " + totalCorrect + "問<br><br>" + formattedResult;
+        }
+
+        // クイズを開始する
+        showQuestion();
+    </script>
+</body>
+</html>

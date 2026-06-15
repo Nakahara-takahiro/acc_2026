@@ -1,4 +1,6 @@
-import random
+"""
+ここに入力する
+"""
 
 quiz = [
     ("日本の首都は？", "東京", "地理"),
@@ -13,19 +15,6 @@ quiz = [
     ("大政奉還が行われた年は？", "1867", "歴史"),
 ]
 
-random.shuffle(quiz)  # リストをランダムに並び替え
-
-scores = {}
-
-for q, a, category in quiz:
-    print(q)
-    ans = input("答えは？ ")
-    if ans == a:
-        print("正解！")
-        scores[category] = scores.get(category, 0) + 1
-    else:
-        print(f"残念… 正解は {a}")
-
-print("\n--- カテゴリ別結果 ---")
-for category, count in scores.items():
-    print(f"{category}：{count}問正解")
+"""
+ここに入力する
+"""
