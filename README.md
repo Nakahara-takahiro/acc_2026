@@ -2,48 +2,61 @@
 相生プログラミングクラブ（2026年）教材集
 
 ## 第2期 ラズPico実験基板でWS2812B＋ロータリエンコーダを使おう
+
 ### 第1回 「WS2812Bの接続と基本」フルカラーLEDを光らせよう（2026年3月4日）
-- [WS2812Bを点灯させるテストプログラム](./neopixel_test.py) 
-- [テストプログラムその2。LEDの追いかけっこ](./chase_led.py) 
-- [WS2812B7個を使ったリアクションゲーム](./reaction_game.py) 
+- [WS2812Bを点灯させるテストプログラム](./season2/neopixel_test.py) 
+- [テストプログラムその2。LEDの追いかけっこ](./season2/chase_led.py) 
+- [WS2812B7個を使ったリアクションゲーム](./season2/reaction_game.py) 
 
 ### 第2回 「RGB色空間」数値で色を表現する（2026年3月18日）
-- [カラーを手入力で変更して確認するプログラム](./color_sample.py) 
-- [混色実験プログラム](./mix_color.py)  
+- [カラーを手入力で変更して確認するプログラム](./season2/color_sample.py) 
+- [混色実験プログラム](./season2/mix_color.py)  
+
 ### 第3回 「ロータリーエンコーダーの仕組み」回転を数値に変換する（2026年4月1日）
-- [一つの青色LEDの明るさが変わる](encoder_sample1.py) 
-- [対応したSWを押しながら動作すると、RGBのLEDの明るさが変わる](encoder_led_rgb.py) 
-- [WS2812Bの色と明るさが変わる](encoder_neopixel.py) 
+- [一つの青色LEDの明るさが変わる](./season2/encoder_sample1.py) 
+- [対応したSWを押しながら動作すると、RGBのLEDの明るさが変わる](./season2/encoder_led_rgb.py) 
+- [WS2812Bの色と明るさが変わる](./season2/encoder_neopixel.py) 
+
 ### 第4回 ~~「LEDコントローラーを作ろう」エンコーダーで色相を操作~~ 「シューティングゲームを作ろう」ロータリーエンコーダー入力を移動に使う（2026年4月15日）
-- [シューティングゲームの仕様書](shooting_game_spec.md) 
-- [ロータリーエンコーダーを使ったシンプルなシューティングゲームのテンプレート](simple_shooting_template.py) 
-- [ロータリーエンコーダーを使ったシンプルなシューティングゲーム](simple_shooting.py) 
+- [シューティングゲームの仕様書](./season2/shooting_game_spec.md) 
+- [ロータリーエンコーダーを使ったシンプルなシューティングゲームのテンプレート](./season2/simple_shooting_template.py) 
+- [ロータリーエンコーダーを使ったシンプルなシューティングゲーム](./season2/simple_shooting.py) 
 
 
 ## 第3期ScratchとPythonでクイズゲームを作ろう
+
 ### 第1回「ScratchとPythonのリスト機能」問題と答えをまとめて管理しよう（2026年5月20日）
+
 #### テンプレート
-- [辞書型リストを理解するコード入力用](./quiz_list_template.py.py)
+- [辞書型リストを理解するコード入力用](./season3/quiz_list_template.py.py)
+
 #### 完全版
-- [辞書型リストを理解するコード](quiz_list.py)
+- [辞書型リストを理解するコード](./season3/quiz_list.py)
 
 ### 第2回「ランダム出題とスコア計算」何問正解できるかな？（2026年6月3日）
-- [ランダム出題を理解するコード入力用](quiz_random_template.py)
-- [ランダムでクイズを出すコード](quiz_random.py)
-- [ランダムでクイズを出し、カテゴリごとに集計するコード](quiz_random2.py)
+- [ランダム出題を理解するコード入力用](./season3/quiz_random_template.py)
+- [ランダムでクイズを出すコード](./season3/quiz_random.py)
+- [ランダムでクイズを出し、カテゴリごとに集計するコード](./season3/quiz_random2.py)
 
 ### 第3回「tkinterでクイズアプリを作ろう」ボタンで回答を選べるようにする
-- [GUIクイズアプリテンプレート](./quiz_tkinter_template.py)
-- [GUIクイズアプリHTML版](./quiz_html.html)
+- [GUIクイズアプリテンプレート](./season3/quiz_tkinter_template.py)
+- [GUIクイズアプリHTML版](./season3/quiz_html.html)
   
 ### 第4回 ―
 
 
 ## 第4期 ラズPico実験基板で反射神経ゲームを作ろう
+
 ### 第1回「実験基板のLEDとスイッチを確認」GPIOの入出力を理解する
+- [LEDを順に点灯するプログラム](./season4/relay_LED.py)
+- [どのスイッチが押されたか検知するプログラム](./season4/detect_switch.py)
 
 ### 第2回「ランダムにLEDを点灯」timeとrandomを使いこなす
-
+- [ランダム点灯タイマー]()
+- [ランダム点灯タイマー フローチャート](./season4/random_led_flowchart.md)
+- [反応時間計測]()
+- [反応時間計測 フローチャート](./season4/random_switch_flowchart.md)
+- [ランダム点灯チャレンジ]()
 ### 第3回「スイッチ入力の検知」正しいボタンを押せたか判定する
 
 ### 第4回「反射神経ゲーム完成 」コア表示とレベルアップ機能を追加
