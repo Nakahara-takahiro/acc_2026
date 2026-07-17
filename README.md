@@ -52,11 +52,13 @@
 - [どのスイッチが押されたか検知するプログラム](./season4/detect_switch.py)
 
 ### 第2回「ランダムにLEDを点灯」timeとrandomを使いこなす
-- [ランダム点灯タイマー]()
+- [ランダム点灯タイマー](./season4/random_led.py)
 - [ランダム点灯タイマー フローチャート](./season4/random_led_flowchart.md)
-- [反応時間計測]()
+- [反応時間計測](./season4/random_switch.py)
 - [反応時間計測 フローチャート](./season4/random_switch_flowchart.md)
-- [ランダム点灯チャレンジ]()
+- [ランダム点灯チャレンジ](./season4/random_led_charange.py)
+- [ランダム点灯チャレンジ フローチャート](./season4/random_led_charange_flowchart.md)
+
 ### 第3回「スイッチ入力の検知」正しいボタンを押せたか判定する
 
 ### 第4回「反射神経ゲーム完成 」コア表示とレベルアップ機能を追加
