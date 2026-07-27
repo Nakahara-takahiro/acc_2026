@@ -60,6 +60,12 @@
 - [ランダム点灯チャレンジ フローチャート](./season4/random_led_charange_flowchart.md)
 
 ### 第3回「スイッチ入力の検知」正しいボタンを押せたか判定する
+- [押したスイッチを当てろ！](./season4/sw_match_1rd.py)
+- [押したスイッチを当てろ！ フローチャート](./season4/sw_match_1rd_flowchart.md)
+- [3問連続チャレンジ](./season4/sw_match_3rds.py)
+- [3問連続チャレンジ フローチャート](./season4/sw_match_3rds_flowchart.md)
+- [ランダム点灯チャレンジ（スイッチ判定付き）](./season4/led_random_sw.py)
+- [ランダム点灯チャレンジ（スイッチ判定付き） フローチャート](./season4/led_random_sw_flowchart.md)
 
 ### 第4回「反射神経ゲーム完成 」コア表示とレベルアップ機能を追加
 
