@@ -68,7 +68,13 @@
 - [ランダム点灯チャレンジ（スイッチ判定付き） フローチャート](./season4/led_random_sw_flowchart.md)
 
 ### 第4回「反射神経ゲーム完成 」コア表示とレベルアップ機能を追加
-
+- [反射神経ゲーム基本編](./season4/reflex_basic.py)
+- [チャタリング防止追加](./season4/addin1.py)
+- [正解不正解演出追加1](./season4/addin2-1.py)
+- [正解不正解演出追加2](./season4/addin2-2.py)
+- [完了演出追加1](./season4/addin3-1.py)
+- [完了演出追加2](./season4/addin3-2.py)
+- [反射神経ゲームフローチャート](./season4/reflex_game_flowchart.md)
 
 ## 第5期 ScratchとPythonでタイマー＆ストップウォッチを作ろう
 ### 第1回「時間を計るとは？」Scratchのタイマー機能を使ってみよう
